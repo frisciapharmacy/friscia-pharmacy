@@ -3,7 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Friscia Pharmacy — Your Neighborhood Pharmacy</title>
+<title>Friscia Pharmacy — Coney Island's Neighborhood Pharmacy Since 1920</title>
+<meta name="description" content="Friscia Pharmacy has served Coney Island, Brooklyn since 1920. Free home delivery, free BP checks, and same-day prescription refills at 1505 Mermaid Ave. Call (718) 373-9600.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Friscia Pharmacy — Coney Island's Neighborhood Pharmacy Since 1920">
+<meta property="og:description" content="Free home delivery, free BP checks, and same-day prescription refills. Independently owned on Mermaid Ave since 1920.">
+<meta property="og:image" content="https://frisciapharmacy.com/storefront.webp">
+<meta property="og:url" content="https://frisciapharmacy.com">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='29' fill='%23D6362B' stroke='%231D5FA8' stroke-width='2.5'/%3E%3Ctext x='30' y='39' font-family='Georgia,serif' font-weight='700' font-size='26' fill='%23FFFFFF' text-anchor='middle'%3ERx%3C/text%3E%3C/svg%3E">
+
+<!-- Local business structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Pharmacy",
+  "name": "Friscia Pharmacy",
+  "image": "https://frisciapharmacy.com/storefront.webp",
+  "url": "https://frisciapharmacy.com",
+  "telephone": "+17183739600",
+  "email": "frisciarx@yahoo.com",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1505 Mermaid Ave",
+    "addressLocality": "Brooklyn",
+    "addressRegion": "NY",
+    "postalCode": "11224",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.5769721,
+    "longitude": -73.9827975
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "17:00" }
+  ],
+  "foundingDate": "1920",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.2",
+    "reviewCount": "30"
+  }
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -71,10 +121,37 @@
     transition:background 0.2s;
   }
   .nav-cta:hover{background:var(--forest-dark);}
-  .nav-toggle{display:none;}
+
+  .nav-toggle{
+    display:none;
+    background:none; border:none; cursor:pointer;
+    padding:6px; flex-shrink:0;
+  }
+  .nav-toggle span{
+    display:block; width:22px; height:2px; background:var(--forest);
+    margin:5px 0; transition:transform 0.2s, opacity 0.2s;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .mobile-menu{
+    display:none;
+    flex-direction:column;
+    background:var(--parchment);
+    border-bottom:1px solid var(--parchment-line);
+    padding:8px 28px 20px;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{
+    padding:12px 0; font-size:1rem; font-weight:500; color:var(--ink-soft);
+    border-bottom:1px dotted var(--parchment-line);
+  }
+  .mobile-menu a:last-child{border-bottom:none;}
 
   @media (max-width:760px){
     .nav-links{display:none;}
+    .nav-toggle{display:block;}
     .nav-cta{padding:9px 14px; font-size:0.82rem;}
   }
 
@@ -321,8 +398,31 @@
       <a href="#hours">Hours &amp; Location</a>
     </div>
     <a href="#refill" class="nav-cta">Refill a Prescription</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">Services</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#hours">Hours &amp; Location</a>
   </div>
 </nav>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 
 <header class="hero">
   <div class="wrap hero-grid">
