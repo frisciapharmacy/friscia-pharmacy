@@ -59,11 +59,8 @@
   }
   .brand{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.25rem; color:var(--forest);}
   .brand-mark{
-    width:30px; height:30px; border-radius:50%;
-    background:var(--forest);
     display:flex; align-items:center; justify-content:center;
-    color:var(--parchment); font-size:0.95rem; font-weight:700;
-    flex-shrink:0;
+    flex-shrink:0; line-height:0;
   }
   .nav-links{display:flex; gap:32px; font-size:0.95rem; font-weight:500;}
   .nav-links a{color:var(--ink-soft); transition:color 0.2s;}
@@ -271,6 +268,14 @@
   .info-section .eyebrow::before{background:var(--amber-light);}
   .info-section p.lead{color:rgba(250,247,240,0.78);}
 
+  .storefront-photo{
+    width:100%; border-radius:8px; overflow:hidden;
+    border:1px solid rgba(250,247,240,0.18);
+    margin-bottom:24px;
+    box-shadow:0 20px 40px -20px rgba(0,0,0,0.4);
+  }
+  .storefront-photo img{width:100%; display:block;}
+
   .hours-label{
     background:rgba(250,247,240,0.06);
     border:1px solid rgba(250,247,240,0.18);
@@ -301,7 +306,16 @@
 
 <nav>
   <div class="nav-inner">
-    <div class="brand"><span class="brand-mark">F</span>Friscia Pharmacy</div>
+    <div class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 60 60" width="30" height="30" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="30" fill="#1E3A2B"/>
+          <circle cx="30" cy="30" r="25" fill="none" stroke="#B4650F" stroke-width="1.2"/>
+          <text x="30" y="39" font-family="'Fraunces',serif" font-weight="600" font-size="22" fill="#FAF7F0" text-anchor="middle">Rx</text>
+        </svg>
+      </span>
+      Friscia Pharmacy
+    </div>
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#reviews">Reviews</a>
@@ -379,21 +393,21 @@
 <section class="section" id="reviews">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">From our neighbors</div>
+      <div class="eyebrow">4.2★ average &#8226; 30 Google reviews</div>
       <h2>Trusted by four generations of this block.</h2>
     </div>
     <div class="testimonial-grid">
       <div class="note-card">
-        <p>"They know my mother's whole medication list by heart. That kind of care doesn't exist at the big chains anymore."</p>
-        <div class="note-attr"><div class="note-avatar">D</div><div><div class="note-name">Dana R.</div><div class="note-role">Customer since 2015</div></div></div>
+        <p>"The staff always take time to explain things and answer every question — service is quick, organized, and I always feel comfortable coming in."</p>
+        <div class="note-attr"><div class="note-avatar">★</div><div><div class="note-name">Google Review</div><div class="note-role">5 stars</div></div></div>
       </div>
       <div class="note-card">
-        <p>"Free delivery saved me during recovery. The pharmacist even called to check how I was doing."</p>
-        <div class="note-attr"><div class="note-avatar">M</div><div><div class="note-name">Marcus T.</div><div class="note-role">Customer since 2019</div></div></div>
+        <p>"They pick up the phone every time and take the time to answer any question — I really love this pharmacy."</p>
+        <div class="note-attr"><div class="note-avatar">★</div><div><div class="note-name">Google Review</div><div class="note-role">5 stars</div></div></div>
       </div>
       <div class="note-card">
-        <p>"Switched my whole family's prescriptions over. Faster than the chain pharmacy and genuinely friendlier."</p>
-        <div class="note-attr"><div class="note-avatar">L</div><div><div class="note-name">Lena K.</div><div class="note-role">Customer since 2021</div></div></div>
+        <p>"The employees are so warm and accommodating — they genuinely go out of their way to make sure you get what you need."</p>
+        <div class="note-attr"><div class="note-avatar">★</div><div><div class="note-name">Google Review</div><div class="note-role">5 stars</div></div></div>
       </div>
     </div>
   </div>
@@ -403,6 +417,9 @@
   <div class="wrap info-grid">
     <div>
       <div class="eyebrow">Find us</div>
+      <div class="storefront-photo">
+        <img src="storefront.webp" alt="Friscia Pharmacy storefront on the corner of W 15th St and Mermaid Ave, Coney Island">
+      </div>
       <h2>Stop by, we're on the corner.</h2>
       <p class="lead" style="margin-bottom:8px;">1505 Mermaid Ave<br>Brooklyn, NY 11224</p>
       <p style="font-family:'IBM Plex Mono',monospace; font-size:0.82rem; color:rgba(250,247,240,0.6); margin-bottom:24px;">Corner of W 15th St &amp; Mermaid Ave, Coney Island</p>
