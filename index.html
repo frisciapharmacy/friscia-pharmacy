@@ -105,6 +105,7 @@
   }
   .nav-inner{
     display:flex; align-items:center; justify-content:space-between;
+    gap:16px; flex-wrap:wrap;
     padding:18px 28px; max-width:1140px; margin:0 auto;
   }
   .brand{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:1.25rem; color:var(--forest);}
@@ -112,47 +113,17 @@
     display:flex; align-items:center; justify-content:center;
     flex-shrink:0; line-height:0;
   }
-  .nav-links{display:flex; gap:32px; font-size:0.95rem; font-weight:500;}
-  .nav-links a{color:var(--ink-soft); transition:color 0.2s;}
-  .nav-links a:hover{color:var(--forest);}
+  .nav-links{display:flex; gap:10px; flex-wrap:wrap; font-size:0.95rem; font-weight:500;}
   .nav-cta{
-    background:var(--forest); color:var(--parchment);
-    padding:10px 20px; border-radius:6px; font-size:0.9rem; font-weight:600;
+    background:#1E8E3E; color:#FFFFFF;
+    padding:10px 18px; border-radius:6px; font-size:0.88rem; font-weight:600;
     transition:background 0.2s;
+    white-space:nowrap;
   }
-  .nav-cta:hover{background:var(--forest-dark);}
+  .nav-cta:hover{background:#166B2F;}
 
-  .nav-toggle{
-    display:none;
-    background:none; border:none; cursor:pointer;
-    padding:6px; flex-shrink:0;
-  }
-  .nav-toggle span{
-    display:block; width:22px; height:2px; background:var(--forest);
-    margin:5px 0; transition:transform 0.2s, opacity 0.2s;
-  }
-  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
-  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-
-  .mobile-menu{
-    display:none;
-    flex-direction:column;
-    background:var(--parchment);
-    border-bottom:1px solid var(--parchment-line);
-    padding:8px 28px 20px;
-  }
-  .mobile-menu.open{display:flex;}
-  .mobile-menu a{
-    padding:12px 0; font-size:1rem; font-weight:500; color:var(--ink-soft);
-    border-bottom:1px dotted var(--parchment-line);
-  }
-  .mobile-menu a:last-child{border-bottom:none;}
-
-  @media (max-width:760px){
-    .nav-links{display:none;}
-    .nav-toggle{display:block;}
-    .nav-cta{padding:9px 14px; font-size:0.82rem;}
+  @media (max-width:600px){
+    .nav-cta{padding:9px 14px; font-size:0.8rem;}
   }
 
   /* ---------- HERO ---------- */
@@ -297,8 +268,9 @@
   }
 
   /* ---------- TRANSFER / REFILL FORMS ---------- */
-  .forms-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
-  @media (max-width:800px){.forms-grid{grid-template-columns:1fr;}}
+  .forms-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:22px;}
+  @media (max-width:1000px){.forms-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:640px){.forms-grid{grid-template-columns:1fr;}}
 
   .rx-form{
     background:var(--white);
@@ -333,6 +305,23 @@
   }
   .field textarea{resize:vertical; min-height:70px;}
 
+  .field-check{
+    display:flex; align-items:center; gap:10px; margin-bottom:16px;
+    padding:10px 12px; background:var(--parchment); border:1px solid var(--parchment-line);
+    border-radius:6px; cursor:pointer;
+  }
+  .field-check input{width:16px; height:16px; accent-color:var(--forest); cursor:pointer; flex-shrink:0;}
+  .field-check span{font-size:0.87rem; color:var(--ink); font-weight:500;}
+
+  .delivery-address{
+    max-height:0; overflow:hidden; opacity:0;
+    transition:max-height 0.25s ease, opacity 0.2s ease, margin 0.25s ease;
+    margin-bottom:0;
+  }
+  .delivery-address.open{
+    max-height:120px; opacity:1; margin-bottom:16px;
+  }
+
   .rx-form-submit{
     width:100%; justify-content:center; border:none; cursor:pointer;
     background:var(--forest); color:var(--parchment); margin-top:4px;
@@ -352,6 +341,28 @@
     font-size:0.85rem;
   }
   .rx-form-alt a{color:var(--forest); font-weight:600; text-decoration:underline; text-underline-offset:3px;}
+
+  /* ---------- QUESTION BAND ---------- */
+  .question-band{
+    background:var(--forest);
+    border-radius:14px;
+    padding:48px 44px;
+    display:flex; align-items:center; justify-content:space-between; gap:28px;
+    flex-wrap:wrap;
+    color:var(--parchment);
+  }
+  .question-band h3{font-size:1.4rem; margin-bottom:6px; color:var(--parchment);}
+  .question-band p{font-size:0.95rem; opacity:0.8; max-width:38ch;}
+  .question-band .btn-row{display:flex; gap:12px; flex-wrap:wrap;}
+  .btn-call{
+    background:#FFFFFF; color:var(--forest-dark);
+  }
+  .btn-call:hover{background:var(--parchment-line);}
+  .btn-whatsapp{
+    background:#25D366; color:#FFFFFF;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-whatsapp:hover{background:#1EBE5A;}
 
   /* ---------- TESTIMONIAL ---------- */
   .note-card{
@@ -435,37 +446,13 @@
       </span>
       Friscia Pharmacy
     </div>
-    <div class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#hours">Hours &amp; Location</a>
+    <div class="nav-links" style="gap:12px;">
+      <a href="#newRxForm" class="nav-cta">New Rx</a>
+      <a href="#transferForm" class="nav-cta">Transfer a Prescription</a>
+      <a href="#refillForm" class="nav-cta">Refill a Prescription</a>
     </div>
-    <a href="#refillForm" class="nav-cta">Refill a Prescription</a>
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#services">Services</a>
-    <a href="#reviews">Reviews</a>
-    <a href="#hours">Hours &amp; Location</a>
   </div>
 </nav>
-
-<script>
-  const navToggle = document.getElementById('navToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-  navToggle.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', isOpen);
-  });
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-</script>
 
 <header class="hero">
   <div class="wrap hero-grid">
@@ -501,7 +488,6 @@
       <h1>Your prescriptions, filled with <em>care</em>, not haste.</h1>
       <p class="lead">Friscia has been the neighborhood pharmacy for over a century — fast refills, real conversations with your pharmacist, and free home delivery for the medications your family depends on.</p>
       <div class="btn-row">
-        <a href="#transferForm" class="btn btn-primary">Transfer a Prescription →</a>
         <a href="#hours" class="btn btn-ghost">Visit Us Today</a>
       </div>
     </div>
@@ -536,11 +522,60 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Get started</div>
-      <h2>Refill or transfer in under a minute.</h2>
+      <h2>New prescription, refill, or transfer — in under a minute.</h2>
       <p>Fill in a few details and click submit — it goes straight to us, no account, no app, no hold music.</p>
     </div>
 
     <div class="forms-grid">
+
+      <form class="rx-form" id="newRxForm" action="https://formspree.io/f/mppabyok" method="POST">
+        <input type="hidden" name="_subject" value="New Rx Request — Friscia Pharmacy">
+        <input type="hidden" name="Request Type" value="New Prescription">
+        <div class="rx-form-head">
+          <span class="rx-form-badge">N</span>
+          <h3>New Rx</h3>
+        </div>
+        <p>Have a new prescription for us to fill? Send it over.</p>
+
+        <div class="field">
+          <label for="new-fname">First Name</label>
+          <input id="new-fname" name="First Name" type="text" required placeholder="Jane">
+        </div>
+        <div class="field">
+          <label for="new-lname">Last Name</label>
+          <input id="new-lname" name="Last Name" type="text" required placeholder="Doe">
+        </div>
+        <div class="field">
+          <label for="new-dob">Date of Birth</label>
+          <input id="new-dob" name="Date of Birth" type="date" required>
+        </div>
+        <div class="field">
+          <label for="new-phone">Phone Number</label>
+          <input id="new-phone" name="Phone Number" type="tel" required placeholder="(718) 555-0100">
+        </div>
+        <div class="field">
+          <label for="new-med">Medication(s) Name (if known)</label>
+          <input id="new-med" name="Medication(s) Name" type="text" placeholder="e.g. Amoxicillin 500mg">
+        </div>
+
+        <label class="field-check">
+          <input type="checkbox" class="delivery-toggle" data-target="new-address-wrap">
+          <span>I'd like free home delivery</span>
+        </label>
+        <div class="field delivery-address" id="new-address-wrap">
+          <label for="new-address">Home Delivery Address</label>
+          <input id="new-address" name="Delivery Address" type="text" placeholder="Street, Apt, City, Zip">
+        </div>
+
+        <button type="submit" class="btn rx-form-submit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right:8px; vertical-align:-4px;"><path d="M4 4h16v16H4z" stroke="none"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+          Send New Rx Request
+        </button>
+        <p class="form-status" aria-live="polite"></p>
+        <div class="rx-form-alt">
+          <a href="tel:+17183739600">Call Instead</a>
+        </div>
+      </form>
 
       <form class="rx-form" id="refillForm" action="https://formspree.io/f/mppabyok" method="POST">
         <input type="hidden" name="_subject" value="New Refill Request — Friscia Pharmacy">
@@ -552,20 +587,33 @@
         <p>Already a Friscia patient? Send us your details and we'll have it ready.</p>
 
         <div class="field">
-          <label for="refill-name">Full Name</label>
-          <input id="refill-name" name="Full Name" type="text" required placeholder="Jane Doe">
+          <label for="refill-fname">First Name</label>
+          <input id="refill-fname" name="First Name" type="text" required placeholder="Jane">
+        </div>
+        <div class="field">
+          <label for="refill-lname">Last Name</label>
+          <input id="refill-lname" name="Last Name" type="text" required placeholder="Doe">
+        </div>
+        <div class="field">
+          <label for="refill-dob">Date of Birth</label>
+          <input id="refill-dob" name="Date of Birth" type="date" required>
         </div>
         <div class="field">
           <label for="refill-phone">Phone Number</label>
           <input id="refill-phone" name="Phone Number" type="tel" required placeholder="(718) 555-0100">
         </div>
         <div class="field">
-          <label for="refill-med">Medication Name or Rx #</label>
-          <input id="refill-med" name="Medication / Rx #" type="text" required placeholder="e.g. Metformin 500mg, Rx #44821">
+          <label for="refill-med">Rx Number(s) or Medication(s) Name</label>
+          <input id="refill-med" name="Medication(s) Name" type="text" required placeholder="e.g. Rx #44821 or Metformin 500mg">
         </div>
-        <div class="field">
-          <label for="refill-notes">Notes (optional)</label>
-          <textarea id="refill-notes" name="Notes" placeholder="Anything else we should know"></textarea>
+
+        <label class="field-check">
+          <input type="checkbox" class="delivery-toggle" data-target="refill-address-wrap">
+          <span>I'd like free home delivery</span>
+        </label>
+        <div class="field delivery-address" id="refill-address-wrap">
+          <label for="refill-address">Home Delivery Address</label>
+          <input id="refill-address" name="Delivery Address" type="text" placeholder="Street, Apt, City, Zip">
         </div>
 
         <button type="submit" class="btn rx-form-submit">
@@ -588,20 +636,45 @@
         <p>Moving from another pharmacy? We'll handle the whole transfer for you.</p>
 
         <div class="field">
-          <label for="transfer-name">Full Name</label>
-          <input id="transfer-name" name="Full Name" type="text" required placeholder="Jane Doe">
+          <label for="transfer-fname">First Name</label>
+          <input id="transfer-fname" name="First Name" type="text" required placeholder="Jane">
+        </div>
+        <div class="field">
+          <label for="transfer-lname">Last Name</label>
+          <input id="transfer-lname" name="Last Name" type="text" required placeholder="Doe">
+        </div>
+        <div class="field">
+          <label for="transfer-dob">Date of Birth</label>
+          <input id="transfer-dob" name="Date of Birth" type="date" required>
         </div>
         <div class="field">
           <label for="transfer-phone">Phone Number</label>
           <input id="transfer-phone" name="Phone Number" type="tel" required placeholder="(718) 555-0100">
         </div>
         <div class="field">
-          <label for="transfer-pharmacy">Current Pharmacy Name &amp; Location</label>
-          <input id="transfer-pharmacy" name="Current Pharmacy" type="text" required placeholder="e.g. CVS on Neptune Ave">
+          <label for="transfer-med">Medication(s) Name (if known)</label>
+          <input id="transfer-med" name="Medication(s) Name" type="text" placeholder="e.g. Lisinopril 10mg">
         </div>
         <div class="field">
-          <label for="transfer-med">Medication(s) to Transfer</label>
-          <input id="transfer-med" name="Medication(s)" type="text" required placeholder="e.g. Lisinopril 10mg">
+          <label for="transfer-pharmacy">Other Pharmacy Name</label>
+          <input id="transfer-pharmacy" name="Other Pharmacy Name" type="text" required placeholder="e.g. CVS">
+        </div>
+        <div class="field">
+          <label for="transfer-pharmacy-phone">Other Pharmacy Phone Number</label>
+          <input id="transfer-pharmacy-phone" name="Other Pharmacy Phone" type="tel" required placeholder="(718) 555-0199">
+        </div>
+        <div class="field">
+          <label for="transfer-pharmacy-address">Other Pharmacy Address (if known)</label>
+          <input id="transfer-pharmacy-address" name="Other Pharmacy Address" type="text" placeholder="Street, City">
+        </div>
+
+        <label class="field-check">
+          <input type="checkbox" class="delivery-toggle" data-target="transfer-address-wrap">
+          <span>I'd like free home delivery</span>
+        </label>
+        <div class="field delivery-address" id="transfer-address-wrap">
+          <label for="transfer-address">Home Delivery Address</label>
+          <input id="transfer-address" name="Delivery Address" type="text" placeholder="Street, Apt, City, Zip">
         </div>
 
         <button type="submit" class="btn rx-form-submit">
@@ -618,12 +691,29 @@
   </div>
 </section>
 
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="question-band">
+      <div>
+        <h3>Have a question for us?</h3>
+        <p>Skip the form — call or message us directly and we'll help you right away.</p>
+      </div>
+      <div class="btn-row">
+        <a href="tel:+17183739600" class="btn btn-call">Call Us</a>
+        <a href="https://wa.me/17183739600" target="_blank" rel="noopener" class="btn btn-whatsapp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.53 1.36 5.06L2 22l5.19-1.47a9.86 9.86 0 0 0 4.85 1.28h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.83 14.02c-.24.68-1.4 1.31-1.93 1.35-.51.05-1.02.24-3.42-.78-2.9-1.24-4.74-4.13-4.88-4.32-.14-.19-1.16-1.55-1.16-2.96 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.82 2 .89 2.15.07.15.12.32.02.51-.1.19-.15.31-.3.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.63-.08.17-.2.72-.84.92-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.68-.17 1.35z"/></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <script>
   function wireForm(formId) {
     const form = document.getElementById(formId);
     const status = form.querySelector('.form-status');
     const button = form.querySelector('button[type="submit"]');
-    const originalLabel = button.innerHTML;
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -641,6 +731,8 @@
           status.textContent = "Sent! We'll be in touch shortly.";
           status.className = 'form-status success';
           form.reset();
+          const addressWrap = form.querySelector('.delivery-address');
+          if (addressWrap) addressWrap.classList.remove('open');
         } else {
           status.textContent = "Something went wrong — please call us instead.";
           status.className = 'form-status error';
@@ -656,8 +748,26 @@
     });
   }
 
+  wireForm('newRxForm');
   wireForm('refillForm');
   wireForm('transferForm');
+
+  document.querySelectorAll('.delivery-toggle').forEach(function(checkbox) {
+    const targetId = checkbox.getAttribute('data-target');
+    const wrap = document.getElementById(targetId);
+    const addressInput = wrap.querySelector('input');
+
+    checkbox.addEventListener('change', function() {
+      if (checkbox.checked) {
+        wrap.classList.add('open');
+        addressInput.required = true;
+      } else {
+        wrap.classList.remove('open');
+        addressInput.required = false;
+        addressInput.value = '';
+      }
+    });
+  });
 </script>
 
 <section class="section" id="reviews">
