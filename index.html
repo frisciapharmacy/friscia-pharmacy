@@ -528,7 +528,7 @@
     <div class="section-head">
       <div class="eyebrow">Get started</div>
       <h2>New prescription, refill, or transfer — in under a minute.</h2>
-      <p>Fill in a few details and click submit — it goes straight to us, no account, no app, no hold music.</p>
+      <p>Fill in a few details and click submit — it goes straight to us, no account, no app, no hold music. For your privacy, we only collect contact info online; we'll call you back to confirm medication details securely.</p>
     </div>
 
     <div class="forms-grid">
@@ -540,7 +540,7 @@
           <span class="rx-form-badge">N</span>
           <h3>New Rx</h3>
         </div>
-        <p>Have a new prescription for us to fill? Send it over.</p>
+        <p>Have a new prescription for us to fill? Leave your info and we'll call you back.</p>
 
         <div class="field">
           <label for="new-fname">First Name</label>
@@ -551,16 +551,12 @@
           <input id="new-lname" name="Last Name" type="text" required placeholder="Doe">
         </div>
         <div class="field">
-          <label for="new-dob">Date of Birth</label>
-          <input id="new-dob" name="Date of Birth" type="date" required>
-        </div>
-        <div class="field">
           <label for="new-phone">Phone Number</label>
           <input id="new-phone" name="Phone Number" type="tel" required placeholder="(718) 555-0100">
         </div>
         <div class="field">
-          <label for="new-med">Medication(s) Name (if known)</label>
-          <input id="new-med" name="Medication(s) Name" type="text" placeholder="e.g. Amoxicillin 500mg">
+          <label for="new-notes">Anything else we should know? (optional)</label>
+          <textarea id="new-notes" name="Notes" placeholder="We'll call to get the rest of the details"></textarea>
         </div>
 
         <label class="field-check">
@@ -589,7 +585,7 @@
           <span class="rx-form-badge">R</span>
           <h3>Refill a Prescription</h3>
         </div>
-        <p>Already a Friscia patient? Send us your details and we'll have it ready.</p>
+        <p>Already a Friscia patient? Leave your info and we'll call you back to confirm and have it ready.</p>
 
         <div class="field">
           <label for="refill-fname">First Name</label>
@@ -600,16 +596,12 @@
           <input id="refill-lname" name="Last Name" type="text" required placeholder="Doe">
         </div>
         <div class="field">
-          <label for="refill-dob">Date of Birth</label>
-          <input id="refill-dob" name="Date of Birth" type="date" required>
-        </div>
-        <div class="field">
           <label for="refill-phone">Phone Number</label>
           <input id="refill-phone" name="Phone Number" type="tel" required placeholder="(718) 555-0100">
         </div>
         <div class="field">
-          <label for="refill-med">Rx Number(s) or Medication(s) Name</label>
-          <input id="refill-med" name="Medication(s) Name" type="text" required placeholder="e.g. Rx #44821 or Metformin 500mg">
+          <label for="refill-notes">Anything else we should know? (optional)</label>
+          <textarea id="refill-notes" name="Notes" placeholder="We'll call to get the rest of the details"></textarea>
         </div>
 
         <label class="field-check">
@@ -638,7 +630,7 @@
           <span class="rx-form-badge">T</span>
           <h3>Transfer a Prescription</h3>
         </div>
-        <p>Moving from another pharmacy? We'll handle the whole transfer for you.</p>
+        <p>Moving from another pharmacy? Leave your info and we'll call you back to handle the transfer.</p>
 
         <div class="field">
           <label for="transfer-fname">First Name</label>
@@ -649,28 +641,12 @@
           <input id="transfer-lname" name="Last Name" type="text" required placeholder="Doe">
         </div>
         <div class="field">
-          <label for="transfer-dob">Date of Birth</label>
-          <input id="transfer-dob" name="Date of Birth" type="date" required>
-        </div>
-        <div class="field">
           <label for="transfer-phone">Phone Number</label>
           <input id="transfer-phone" name="Phone Number" type="tel" required placeholder="(718) 555-0100">
         </div>
         <div class="field">
-          <label for="transfer-med">Medication(s) Name (if known)</label>
-          <input id="transfer-med" name="Medication(s) Name" type="text" placeholder="e.g. Lisinopril 10mg">
-        </div>
-        <div class="field">
-          <label for="transfer-pharmacy">Other Pharmacy Name</label>
-          <input id="transfer-pharmacy" name="Other Pharmacy Name" type="text" required placeholder="e.g. CVS">
-        </div>
-        <div class="field">
-          <label for="transfer-pharmacy-phone">Other Pharmacy Phone Number</label>
-          <input id="transfer-pharmacy-phone" name="Other Pharmacy Phone" type="tel" required placeholder="(718) 555-0199">
-        </div>
-        <div class="field">
-          <label for="transfer-pharmacy-address">Other Pharmacy Address (if known)</label>
-          <input id="transfer-pharmacy-address" name="Other Pharmacy Address" type="text" placeholder="Street, City">
+          <label for="transfer-notes">Anything else we should know? (optional)</label>
+          <textarea id="transfer-notes" name="Notes" placeholder="We'll call to get the rest of the details"></textarea>
         </div>
 
         <label class="field-check">
