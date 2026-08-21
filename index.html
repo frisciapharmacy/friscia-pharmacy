@@ -390,7 +390,7 @@
 
   /* ---------- HOURS / LOCATION LABEL ---------- */
   .info-section{background:var(--forest); color:var(--parchment); padding:80px 0;}
-  .info-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;}
+  .info-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:stretch;}
   @media (max-width:800px){.info-grid{grid-template-columns:1fr;}}
   .info-section h2{color:var(--parchment); font-size:1.9rem; margin-bottom:20px;}
   .info-section .eyebrow{color:var(--amber-light);}
@@ -398,25 +398,25 @@
   .info-section p.lead{color:rgba(250,247,240,0.78);}
 
   .storefront-photo{
-    width:100%; border-radius:8px; overflow:hidden;
+    width:100%; height:100%; border-radius:8px; overflow:hidden;
     border:1px solid rgba(250,247,240,0.18);
-    margin-bottom:24px;
     box-shadow:0 20px 40px -20px rgba(0,0,0,0.4);
   }
-  .storefront-photo img{width:100%; display:block;}
+  .storefront-photo img{width:100%; height:100%; object-fit:cover; display:block;}
 
   .hours-label{
     background:rgba(250,247,240,0.06);
     border:1px solid rgba(250,247,240,0.18);
     border-radius:8px;
-    padding:26px 28px;
-    width:fit-content;
-    max-width:100%;
+    padding:32px 32px;
+    width:100%; height:100%;
+    display:flex; flex-direction:column; justify-content:center;
+    box-shadow:0 20px 40px -20px rgba(0,0,0,0.4);
   }
   .hours-row{
-    display:flex; justify-content:space-between; gap:48px;
-    padding:10px 0; border-bottom:1px dotted rgba(250,247,240,0.18);
-    font-family:'IBM Plex Mono',monospace; font-size:0.88rem;
+    display:flex; justify-content:space-between; gap:20px;
+    padding:14px 0; border-bottom:1px dotted rgba(250,247,240,0.18);
+    font-family:'IBM Plex Mono',monospace; font-size:0.92rem;
   }
   .hours-row:last-child{border-bottom:none;}
   .hours-row .day{color:rgba(250,247,240,0.7);}
@@ -794,23 +794,25 @@
 </section>
 
 <section class="info-section" id="hours">
-  <div class="wrap info-grid">
-    <div>
-      <div class="eyebrow">Find us</div>
+  <div class="wrap">
+    <div class="eyebrow">Find us</div>
+    <div class="info-grid" style="margin-bottom:36px;">
       <div class="storefront-photo">
         <img src="storefront.webp" alt="Friscia Pharmacy storefront on the corner of W 15th St and Mermaid Ave, Coney Island">
       </div>
+      <div class="hours-label">
+        <div class="hours-row"><span class="day">Monday – Friday</span><span class="time">9:00 AM – 7:00 PM</span></div>
+        <div class="hours-row"><span class="day">Saturday</span><span class="time">10:00 AM – 5:00 PM</span></div>
+        <div class="hours-row"><span class="day">Sunday</span><span class="time">Closed</span></div>
+        <div class="hours-row"><span class="day">Pharmacist Line</span><a class="time" href="tel:+17183739600" style="text-decoration:underline; text-underline-offset:3px;">(718) 373-9600</a></div>
+        <div class="hours-row"><span class="day">Email</span><a class="time" href="mailto:frisciarx@yahoo.com" style="text-decoration:underline; text-underline-offset:3px;">frisciarx@yahoo.com</a></div>
+      </div>
+    </div>
+    <div style="text-align:center;">
       <h2>Stop by, we're on the corner.</h2>
-      <p class="lead" style="margin-bottom:8px;">1505 Mermaid Ave<br>Brooklyn, NY 11224</p>
+      <p class="lead" style="margin:8px auto;">1505 Mermaid Ave<br>Brooklyn, NY 11224</p>
       <p style="font-family:'IBM Plex Mono',monospace; font-size:0.82rem; color:rgba(250,247,240,0.6); margin-bottom:24px;">Corner of W 15th St &amp; Mermaid Ave, Coney Island</p>
       <a href="https://www.google.com/maps/search/?api=1&query=1505+Mermaid+Ave+Brooklyn+NY+11224" target="_blank" rel="noopener" class="btn btn-primary" style="background:var(--amber);">Get Directions →</a>
-    </div>
-    <div class="hours-label">
-      <div class="hours-row"><span class="day">Monday – Friday</span><span class="time">9:00 AM – 7:00 PM</span></div>
-      <div class="hours-row"><span class="day">Saturday</span><span class="time">10:00 AM – 5:00 PM</span></div>
-      <div class="hours-row"><span class="day">Sunday</span><span class="time">Closed</span></div>
-      <div class="hours-row"><span class="day">Pharmacist Line</span><a class="time" href="tel:+17183739600" style="text-decoration:underline; text-underline-offset:3px;">(718) 373-9600</a></div>
-      <div class="hours-row"><span class="day">Email</span><a class="time" href="mailto:frisciarx@yahoo.com" style="text-decoration:underline; text-underline-offset:3px;">frisciarx@yahoo.com</a></div>
     </div>
   </div>
 </section>
