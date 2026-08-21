@@ -121,6 +121,10 @@
     white-space:nowrap;
   }
   .nav-cta:hover{background:#166B2F;}
+  .nav-cta-outline{
+    background:transparent; color:var(--forest); border:1.5px solid var(--forest);
+  }
+  .nav-cta-outline:hover{background:var(--forest); color:var(--parchment);}
 
   @media (max-width:600px){
     .nav-cta{padding:9px 14px; font-size:0.8rem;}
@@ -450,6 +454,7 @@
       <a href="#newRxForm" class="nav-cta">New Rx</a>
       <a href="#transferForm" class="nav-cta">Transfer a Prescription</a>
       <a href="#refillForm" class="nav-cta">Refill a Prescription</a>
+      <a href="#questions" class="nav-cta nav-cta-outline">Questions?</a>
     </div>
   </div>
 </nav>
@@ -691,7 +696,7 @@
   </div>
 </section>
 
-<section class="section" style="padding-top:0;">
+<section class="section" id="questions" style="padding-top:0;">
   <div class="wrap">
     <div class="question-band">
       <div>
