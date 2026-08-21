@@ -26,6 +26,7 @@
   "image": "https://frisciapharmacy.com/storefront.webp",
   "url": "https://frisciapharmacy.com",
   "telephone": "+17183739600",
+  "faxNumber": "+17183734409",
   "email": "frisciarx@yahoo.com",
   "priceRange": "$$",
   "address": {
@@ -334,6 +335,12 @@
   }
   .field textarea{resize:vertical; min-height:70px;}
 
+  .field-error{
+    display:none; font-size:0.78rem; color:#C0392B; margin-top:6px; font-weight:500;
+  }
+  .field-error.show{display:block;}
+  .field input.invalid{border-color:#C0392B; background:#FDF1F0;}
+
   .field-check{
     display:flex; align-items:center; gap:10px; margin-bottom:16px;
     padding:10px 12px; background:var(--parchment); border:1px solid var(--parchment-line);
@@ -566,6 +573,7 @@
       <form class="rx-form" id="rxForm" action="https://formspree.io/f/mppabyok" method="POST">
         <input type="hidden" name="_subject" id="rx-subject" value="New Rx Request — Friscia Pharmacy">
         <input type="hidden" name="Request Type" id="rx-request-type" value="New Prescription">
+        <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
 
         <div class="rx-type-toggle" role="radiogroup" aria-label="What do you need?">
           <label class="rx-type-option">
@@ -590,7 +598,8 @@
 
         <div class="field">
           <label for="rx-fname">First Name</label>
-          <input id="rx-fname" name="First Name" type="text" required placeholder="Jane">
+          <input id="rx-fname" name="First Name" type="text" required minlength="3" pattern="[A-Za-z][A-Za-z\s'-]{2,}" placeholder="Jane">
+          <span class="field-error" id="rx-fname-error"></span>
         </div>
         <div class="field">
           <label for="rx-lname">Last Name</label>
@@ -598,7 +607,8 @@
         </div>
         <div class="field">
           <label for="rx-phone">Phone Number</label>
-          <input id="rx-phone" name="Phone Number" type="tel" required placeholder="(718) 555-0100">
+          <input id="rx-phone" name="Phone Number" type="tel" required inputmode="numeric" pattern="\d{10}" maxlength="10" placeholder="7185550100">
+          <span class="field-error" id="rx-phone-error"></span>
         </div>
         <div class="field">
           <label for="rx-notes">Anything else we should know? (optional)</label>
@@ -647,13 +657,51 @@
 </section>
 
 <script>
+  function validateField(input, errorEl, message) {
+    if (!input.checkValidity()) {
+      input.classList.add('invalid');
+      if (errorEl) { errorEl.textContent = message; errorEl.classList.add('show'); }
+      return false;
+    }
+    input.classList.remove('invalid');
+    if (errorEl) { errorEl.classList.remove('show'); }
+    return true;
+  }
+
   function wireForm(formId) {
     const form = document.getElementById(formId);
     const status = form.querySelector('.form-status');
     const button = form.querySelector('button[type="submit"]');
 
+    const fname = form.querySelector('#rx-fname');
+    const fnameError = form.querySelector('#rx-fname-error');
+    const phone = form.querySelector('#rx-phone');
+    const phoneError = form.querySelector('#rx-phone-error');
+
+    if (fname) {
+      fname.addEventListener('blur', () => validateField(fname, fnameError, 'Please enter a first name of at least 3 letters.'));
+      fname.addEventListener('input', () => { if (fname.classList.contains('invalid')) validateField(fname, fnameError, 'Please enter a first name of at least 3 letters.'); });
+    }
+    if (phone) {
+      phone.addEventListener('input', () => { phone.value = phone.value.replace(/\D/g, '').slice(0, 10); });
+      phone.addEventListener('blur', () => validateField(phone, phoneError, 'Please enter a valid 10-digit phone number.'));
+      phone.addEventListener('input', () => { if (phone.classList.contains('invalid')) validateField(phone, phoneError, 'Please enter a valid 10-digit phone number.'); });
+    }
+
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+
+      let valid = true;
+      if (fname) valid = validateField(fname, fnameError, 'Please enter a first name of at least 3 letters.') && valid;
+      if (phone) valid = validateField(phone, phoneError, 'Please enter a valid 10-digit phone number.') && valid;
+      if (!form.checkValidity()) valid = false;
+
+      if (!valid) {
+        status.textContent = 'Please fix the highlighted fields above.';
+        status.className = 'form-status error';
+        return;
+      }
+
       button.disabled = true;
       status.textContent = 'Sending…';
       status.className = 'form-status';
