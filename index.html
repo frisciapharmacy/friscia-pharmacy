@@ -335,9 +335,15 @@
 
   .rx-form-submit{
     width:100%; justify-content:center; border:none; cursor:pointer;
-    background:#25D366; color:#FFFFFF; margin-top:4px;
+    background:var(--forest); color:var(--parchment); margin-top:4px;
   }
-  .rx-form-submit:hover{background:#1EBE5A;}
+  .rx-form-submit:hover{background:var(--forest-dark);}
+  .rx-form-submit:disabled{opacity:0.6; cursor:default;}
+  .form-status{
+    font-size:0.85rem; text-align:center; margin-top:12px; min-height:1.2em;
+  }
+  .form-status.success{color:#1E7A3C; font-weight:600;}
+  .form-status.error{color:#C0392B; font-weight:600;}
   .rx-form-note{
     font-size:0.78rem; color:var(--sage); margin-top:12px; text-align:center;
   }
@@ -531,12 +537,14 @@
     <div class="section-head">
       <div class="eyebrow">Get started</div>
       <h2>Refill or transfer in under a minute.</h2>
-      <p>Fill in a few details and we'll open WhatsApp with your info ready to send — no account, no hold music.</p>
+      <p>Fill in a few details and click submit — it goes straight to us, no account, no app, no hold music.</p>
     </div>
 
     <div class="forms-grid">
 
-      <form class="rx-form" id="refillForm" action="https://wa.me/17183739600" method="get" target="_blank">
+      <form class="rx-form" id="refillForm" action="https://formspree.io/f/mppabyok" method="POST">
+        <input type="hidden" name="_subject" value="New Refill Request — Friscia Pharmacy">
+        <input type="hidden" name="Request Type" value="Refill">
         <div class="rx-form-head">
           <span class="rx-form-badge">R</span>
           <h3>Refill a Prescription</h3>
@@ -545,31 +553,34 @@
 
         <div class="field">
           <label for="refill-name">Full Name</label>
-          <input id="refill-name" type="text" required placeholder="Jane Doe">
+          <input id="refill-name" name="Full Name" type="text" required placeholder="Jane Doe">
         </div>
         <div class="field">
           <label for="refill-phone">Phone Number</label>
-          <input id="refill-phone" type="tel" required placeholder="(718) 555-0100">
+          <input id="refill-phone" name="Phone Number" type="tel" required placeholder="(718) 555-0100">
         </div>
         <div class="field">
           <label for="refill-med">Medication Name or Rx #</label>
-          <input id="refill-med" type="text" required placeholder="e.g. Metformin 500mg, Rx #44821">
+          <input id="refill-med" name="Medication / Rx #" type="text" required placeholder="e.g. Metformin 500mg, Rx #44821">
         </div>
         <div class="field">
           <label for="refill-notes">Notes (optional)</label>
-          <textarea id="refill-notes" placeholder="Anything else we should know"></textarea>
+          <textarea id="refill-notes" name="Notes" placeholder="Anything else we should know"></textarea>
         </div>
 
         <button type="submit" class="btn rx-form-submit">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right:8px; vertical-align:-4px;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.53 1.36 5.06L2 22l5.19-1.47a9.86 9.86 0 0 0 4.85 1.28h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.83 14.02c-.24.68-1.4 1.31-1.93 1.35-.51.05-1.02.24-3.42-.78-2.9-1.24-4.74-4.13-4.88-4.32-.14-.19-1.16-1.55-1.16-2.96 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.82 2 .89 2.15.07.15.12.32.02.51-.1.19-.15.31-.3.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.63-.08.17-.2.72-.84.92-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.68-.17 1.35z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right:8px; vertical-align:-4px;"><path d="M4 4h16v16H4z" stroke="none"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
           Send Refill Request
         </button>
+        <p class="form-status" aria-live="polite"></p>
         <div class="rx-form-alt">
           <a href="tel:+17183739600">Call Instead</a>
         </div>
       </form>
 
-      <form class="rx-form" id="transferForm" action="https://wa.me/17183739600" method="get" target="_blank">
+      <form class="rx-form" id="transferForm" action="https://formspree.io/f/mppabyok" method="POST">
+        <input type="hidden" name="_subject" value="New Transfer Request — Friscia Pharmacy">
+        <input type="hidden" name="Request Type" value="Transfer">
         <div class="rx-form-head">
           <span class="rx-form-badge">T</span>
           <h3>Transfer a Prescription</h3>
@@ -578,25 +589,26 @@
 
         <div class="field">
           <label for="transfer-name">Full Name</label>
-          <input id="transfer-name" type="text" required placeholder="Jane Doe">
+          <input id="transfer-name" name="Full Name" type="text" required placeholder="Jane Doe">
         </div>
         <div class="field">
           <label for="transfer-phone">Phone Number</label>
-          <input id="transfer-phone" type="tel" required placeholder="(718) 555-0100">
+          <input id="transfer-phone" name="Phone Number" type="tel" required placeholder="(718) 555-0100">
         </div>
         <div class="field">
           <label for="transfer-pharmacy">Current Pharmacy Name &amp; Location</label>
-          <input id="transfer-pharmacy" type="text" required placeholder="e.g. CVS on Neptune Ave">
+          <input id="transfer-pharmacy" name="Current Pharmacy" type="text" required placeholder="e.g. CVS on Neptune Ave">
         </div>
         <div class="field">
           <label for="transfer-med">Medication(s) to Transfer</label>
-          <input id="transfer-med" type="text" required placeholder="e.g. Lisinopril 10mg">
+          <input id="transfer-med" name="Medication(s)" type="text" required placeholder="e.g. Lisinopril 10mg">
         </div>
 
         <button type="submit" class="btn rx-form-submit">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right:8px; vertical-align:-4px;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.53 1.36 5.06L2 22l5.19-1.47a9.86 9.86 0 0 0 4.85 1.28h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm5.83 14.02c-.24.68-1.4 1.31-1.93 1.35-.51.05-1.02.24-3.42-.78-2.9-1.24-4.74-4.13-4.88-4.32-.14-.19-1.16-1.55-1.16-2.96 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.82 2 .89 2.15.07.15.12.32.02.51-.1.19-.15.31-.3.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.63-.08.17-.2.72-.84.92-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.68-.17 1.35z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right:8px; vertical-align:-4px;"><path d="M4 4h16v16H4z" stroke="none"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
           Send Transfer Request
         </button>
+        <p class="form-status" aria-live="polite"></p>
         <div class="rx-form-alt">
           <a href="tel:+17183739600">Call Instead</a>
         </div>
@@ -607,41 +619,45 @@
 </section>
 
 <script>
-  function buildWhatsAppMessage(pairs) {
-    return pairs.filter(p => p[1]).map(p => `${p[0]}: ${p[1]}`).join('\n');
+  function wireForm(formId) {
+    const form = document.getElementById(formId);
+    const status = form.querySelector('.form-status');
+    const button = form.querySelector('button[type="submit"]');
+    const originalLabel = button.innerHTML;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      button.disabled = true;
+      status.textContent = 'Sending…';
+      status.className = 'form-status';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          status.textContent = "Sent! We'll be in touch shortly.";
+          status.className = 'form-status success';
+          form.reset();
+        } else {
+          status.textContent = "Something went wrong — please call us instead.";
+          status.className = 'form-status error';
+        }
+      })
+      .catch(() => {
+        status.textContent = "Something went wrong — please call us instead.";
+        status.className = 'form-status error';
+      })
+      .finally(() => {
+        button.disabled = false;
+      });
+    });
   }
 
-  document.getElementById('refillForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('refill-name').value;
-    const phone = document.getElementById('refill-phone').value;
-    const med = document.getElementById('refill-med').value;
-    const notes = document.getElementById('refill-notes').value;
-    const message = 'Hi Friscia Pharmacy, I\'d like to refill a prescription.\n\n' +
-      buildWhatsAppMessage([
-        ['Name', name],
-        ['Phone', phone],
-        ['Medication / Rx #', med],
-        ['Notes', notes]
-      ]);
-    window.open('https://wa.me/17183739600?text=' + encodeURIComponent(message), '_blank');
-  });
-
-  document.getElementById('transferForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('transfer-name').value;
-    const phone = document.getElementById('transfer-phone').value;
-    const pharmacy = document.getElementById('transfer-pharmacy').value;
-    const med = document.getElementById('transfer-med').value;
-    const message = 'Hi Friscia Pharmacy, I\'d like to transfer a prescription.\n\n' +
-      buildWhatsAppMessage([
-        ['Name', name],
-        ['Phone', phone],
-        ['Current Pharmacy', pharmacy],
-        ['Medication(s)', med]
-      ]);
-    window.open('https://wa.me/17183739600?text=' + encodeURIComponent(message), '_blank');
-  });
+  wireForm('refillForm');
+  wireForm('transferForm');
 </script>
 
 <section class="section" id="reviews">
